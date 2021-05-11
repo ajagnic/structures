@@ -51,6 +51,20 @@ func (t *Trie) Search(key string) bool {
 	return false
 }
 
+func (t *Trie) Delete(key string) {
+	if t.Root == nil {
+		return
+	}
+	thisNode := t.Root
+	chars := wordToCharIndex(key)
+	for _, char := range chars {
+		if thisNode.children[char] != nil {
+			thisNode = thisNode.children[char]
+		}
+	}
+	thisNode.isEndOfWord = false
+}
+
 func (t *Trie) Keys() []string {
 	if t.Root == nil {
 		return nil
