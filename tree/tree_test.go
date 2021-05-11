@@ -236,6 +236,33 @@ func TestTrieKeys(t *testing.T) {
 	}
 }
 
+func TestTrieDelete(t *testing.T) {
+	tr := tree.Trie{}
+	tr.Insert("a")
+	tr.Insert("tar")
+	tr.Insert("target")
+	tr.Insert("tarp")
+	tr.Insert("tan")
+	tr.Insert("tangent")
+	tr.Insert("tangy")
+
+	// Verify:
+	// Partial match is kept.
+	tr.Delete("ace")
+	// Match with children is deleted correctly.
+	tr.Delete("tar")
+	// Match with parents is deleted correctly.
+	tr.Delete("tangent")
+
+	keys := tr.Keys()
+	keysArr := [5]string{}
+	copy(keysArr[:], keys)
+	correct := [5]string{"a", "tan", "tangy", "target", "tarp"}
+	if keysArr != correct {
+		t.Errorf("Incorrect value of keys:\nValues:%v\nCorrect:%v\n", keysArr, correct)
+	}
+}
+
 func traverseTree(node *tree.Node, a *[]int) {
 	if node.Left != nil {
 		*a = append(*a, node.Left.Value)
