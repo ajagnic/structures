@@ -1,32 +1,37 @@
 # structures
+__A collection of various data structures implemented in Go.__
+
 
 ## Linked List
 ![](_readme/linkedlist.png)
 
 ```go
+package linkedlist // import "github.com/ajagnic/structures/linkedlist"
+
 type node struct {
 	Value interface{}
 	Next  *node
 }
 
 type LinkedList struct {
-	Head   *node
-	Tail   *node
-	Length int
+        Head   *node
+        Tail   *node
+        Length int
 }
+
+func (l *LinkedList) Append(val interface{})
+func (l *LinkedList) Delete(val interface{})
+func (l *LinkedList) Insert(i int, val interface{})
+func (l *LinkedList) Prepend(val interface{})
 ```
-```go
-	ll := linkedlist.LinkedList{}
-	ll.Append(value)
-	ll.Prepend(value)
-	ll.Insert(1, value)
-	ll.Delete(value)
-```
+
 
 ## Doubly Linked List
 ![](_readme/doublylinkedlist.png)
 
 ```go
+package linkedlist // import "github.com/ajagnic/structures/linkedlist"
+
 type dllNode struct {
 	Value interface{}
 	Prev  *dllNode
@@ -34,59 +39,62 @@ type dllNode struct {
 }
 
 type DoublyLinkedList struct {
-	Head   *dllNode
-	Tail   *dllNode
-	Length int
+        Head   *dllNode
+        Tail   *dllNode
+        Length int
 }
+
+func (l *DoublyLinkedList) Append(val interface{})
+func (l *DoublyLinkedList) Delete(val interface{})
+func (l *DoublyLinkedList) Insert(i int, val interface{})
+func (l *DoublyLinkedList) Prepend(val interface{})
 ```
-```go
-	dll := linkedlist.DoublyLinkedList{}
-	dll.Append(value)
-	dll.Prepend(value)
-	dll.Insert(1, value)
-	dll.Delete(value)
-```
+
 
 ## Stack
 ![](_readme/stack.png)
 
 ```go
+package stackqueue // import "github.com/ajagnic/structures/stackqueue"
+
 type node struct {
 	value interface{}
 	next  *node
 }
 
 type Stack struct {
-	Top    *node
-	Length int
+        Top    *node
+        Length int
 }
+
+func (s *Stack) Peek() interface{}
+func (s *Stack) Pop() interface{}
+func (s *Stack) Push(val interface{})
 ```
-```go
-	s := stackqueue.Stack{}
-	s.Push(value)
-	value = s.Pop()
-	next := s.Peek()
-```
+
 
 ## Queue
 ![](_readme/queue.png)
 
 ```go
+package stackqueue // import "github.com/ajagnic/structures/stackqueue"
+
 type Queue struct {
 	ll linkedlist.LinkedList
 }
+
+func (q *Queue) Dequeue() interface{}
+func (q *Queue) Enqueue(val interface{})
+func (q *Queue) Peek() interface{}
 ```
-```go
-	q := stackqueue.Queue{}
-	q.Enqueue(value)
-	value = q.Dequeue()
-	next := q.Peek()
-```
+
 
 ## Binary Search Tree
 ![](_readme/bst.png)
 
 ```go
+package tree // import "github.com/ajagnic/structures/tree"
+
 type Node struct {
 	Left  *Node
 	Right *Node
@@ -94,50 +102,53 @@ type Node struct {
 }
 
 type BinarySearchTree struct {
-	Root *Node
+        Root *Node
 }
+
+func (t *BinarySearchTree) Insert(val int)
+func (t *BinarySearchTree) Lookup(val int) *Node
+func (t *BinarySearchTree) Remove(val int)
 ```
-```go
-	t := tree.BinarySearchTree{}
-	t.Insert(50)
-	node := t.Lookup(50)
-	t.Remove(50)
-```
+
 
 ## Binary Heap
 ![](_readme/heap.png)
 
 ```go
+package tree // import "github.com/ajagnic/structures/tree"
+
 type BinaryHeap struct {
-	A []int
+        A []int
 }
+
+func (h *BinaryHeap) Delete(i int)
+func (h *BinaryHeap) ExtractMax() int
+func (h *BinaryHeap) Insert(val int)
+func (h *BinaryHeap) ModifyValue(i, newValue int)
+func (h *BinaryHeap) Search(val int) (i int, ok bool)
 ```
-```go
-	h := tree.BinaryHeap{}
-	h.Insert(100)
-	max := h.ExtractMax()
-	h.Delete(50)
-	h.ModifyValue(1, 25)
-	i, ok := h.Search(75)
-```
+
 
 ## Trie
 ![](_readme/trie.png)
 
 ```go
+package tree // import "github.com/ajagnic/structures/tree"
+
 type trieNode struct {
 	children    [26]*trieNode
 	isEndOfWord bool
 }
 
 type Trie struct {
-	Root *trieNode
+        Root *trieNode
 }
+
+func (t *Trie) Delete(key string)
+func (t *Trie) Insert(key string)
+func (t *Trie) Keys() []string
+func (t *Trie) Search(key string) bool
 ```
-```go
-	tr := tree.Trie{}
-	tr.Insert("test")
-	tr.Delete("test")
-	ok := tr.Search("test")
-	keys := tr.Keys()
-```
+
+# Authors
+Adrian Agnic [ [GitHub](https://github.com/ajagnic) ]
